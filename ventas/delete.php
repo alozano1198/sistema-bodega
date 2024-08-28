@@ -52,7 +52,7 @@ include ('../app/controllers/clientes/cargar_cliente.php');
                                         <table class="table table-bordered table-sm table-hover table-striped">
                                           <thead>
                                             <tr>
-                                              <th style="background-color: #e7e7e7; text-align: center;">Nro</th>
+                                              <th style="background-color: #e7e7e7; text-align: center;">No.</th>
                                               <th style="background-color: #e7e7e7; text-align: center;">Producto</th>
                                               <th style="background-color: #e7e7e7; text-align: center;">Descripción</th>
                                               <th style="background-color: #e7e7e7; text-align: center;">Cantidad</th>

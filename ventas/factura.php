@@ -44,19 +44,26 @@ foreach ($ventas_datos as $ventas_dato) {
 }
 
 
+
+/* $fecha = date("d/m/Y", strtotime($fecha_creacion)); */
+/* $timestamp = strtotime($fecha_creacion);
+$new_date = date('d/m/Y', $timestamp); */
+
+
+
 // convierte precio total a literal
 $monto_literal = numtoletras($total_pagado);
 
 
 
 // create new PDF document
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(215,279), true, 'UTF-8', false);
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,90), true, 'UTF-8', false);
 
 // set document information
 $pdf->setCreator(PDF_CREATOR);
-$pdf->setAuthor('Sistema de parqueo');
-$pdf->setTitle('Sistema de parqueo');
-$pdf->setSubject('Sistema de parqueo');
+$pdf->setAuthor('Nicola Asuni');
+$pdf->setTitle('Comprobante Salida');
+$pdf->setSubject('TCPDF Tutorial');
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
 // remove default header/footer
@@ -67,7 +74,7 @@ $pdf->setPrintFooter(false);
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->setMargins(15, 15, 15);
+$pdf->setMargins(5, 5, 5);
 
 // set auto page breaks
 $pdf->setAutoPageBreak(true, 5);
@@ -85,7 +92,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->setFont('Helvetica', '', 12);
+$pdf->setFont('Helvetica', '', 7);
 
 // add a page
 $pdf->AddPage();
@@ -95,49 +102,31 @@ $pdf->AddPage();
 
 // create some HTML content
 $html = '
-<table border="0" style="font-size: 10px">
-<tr>
-    <td style="text-align: center; width:230px"> 
-    <img src="../public/images/logo.jpg" width="80px" alt=""> <br><br>
-    <b>Sistema de Ventas</b><br>
-    1era AV. Villa Canales <br>
-    12345678 - 87654321 <br>
-    Guatemala - Guatemala
-    </td>
-    <td style="width: 150px"></td>
-    <td style="font-size: 16px; width:290px"><br><br><br><br>
-    <b>NIT: </b>12345678901<br>
-    <b>Nro Factura: </b>'.$id_venta_get.'<br>
-    <b>Nro de autorización: </b>10000020002
-    <p style="text-align:center"><b>ORIGINAL</b></p>
-    </td>
-</tr>
-</table>
-
-<p style="text-align: center; font-size:25px">FACTURA</p>
-
-<div style="border: 1px solid #000">
-<table border="0" cellpadding ="6px">
-<tr>
-    <td><b>Fecha: </b>'.$fecha_creacion.'</td>
-    <td></td>
-    <td><b>Nit/CI: </b>'.$area_cliente.'</td>
-</tr>
-<tr>
-    <td colspan="3"><b>Señor(es): </b>'.$nombre_cliente.'</td>
-</tr>
-</table>
+<div>
+    <p style="text-align: center">
+        <b>BODEGA DE INSUMOS</b> <br>
+         <br>
+        <b>Salida No.</b> '.$id_venta_get.' <br>
+        <br>
+        <b>Comprobante de Salida de Productos</b>
+         <br>
+        --------------------------------------------------------------------------------
+        <div style="text-align: left">
+            <b>Fecha:</b> '.$fecha_actual.'<br>
+            <b>Nombre Empleado: </b> '.$nombre_cliente.'<br>
+            <b>Área:</b> '.$area_cliente.'<br>
+            --------------------------------------------------------------------------------
+        </div>
+    </p>
 </div>
+';
 
-<br><br>
-
-<table border="1" cellpadding="5" style="font-size: 12px">
+$html .='
+<table border="1">
 <tr style="text-align: center; background-color: #d6d6d6">
-    <th style="width: 40px"><b>Nro</b></th>
-    <th style="width: 150px"><b>Producto</b></th>
-    <th style="width: 235px"><b>Descripción</b></th>
-    <th style="width: 65px"><b>Cantidad</b></th>
-    
+    <th style="width: 50px"><b>No.</b></th>
+    <th style="width: 120px"><b>Producto</b></th>
+    <th style="width: 75px"><b>Cantidad</b></th>
 </tr>
 ';
 
@@ -163,7 +152,6 @@ $cantidad_total = $cantidad_total + $carrito_dato['cantidad'];
    <tr>
       <td style="text-align: center">'.$contador_de_carrito.'</td>
       <td>'.$carrito_dato['nombre_producto'].'</td>
-      <td>'.$carrito_dato['descripcion'].'</td>
       <td style="text-align: center">'.$carrito_dato['cantidad'].'</td>
   </tr>
 ';
@@ -171,25 +159,14 @@ $cantidad_total = $cantidad_total + $carrito_dato['cantidad'];
 
 $html .='
 <tr>
-    <td colspan="3" style="text-align: right; background-color: #d6d6d6"><b>Total</b></td>
+    <td colspan="2" style="text-align: right; background-color: #d6d6d6"><b>Total</b></td>
     <td style="text-align: center; background-color: #d6d6d6">'.$cantidad_total.'</td>
     
 </tr>
 </table>
-
-<p style="text-align: right">
-         <b>Monto Total: </b> Bs. '.$cantidad_total.'
-        </p>
-        <p>
-            <b>Son: </b>'.$monto_literal.'
-        </p>
-        <br>
-         -------------------------------------------------------------------------------- <br>
-         <b>USUARIO: </b>'.$nombres_sesion.'<br>
-         
-        <p style="text-align: center">"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO DE ÉSTA SERÁ SANCIONADO DE ACUERDO A LA LEY"
-        </p>
-        <p style="text-align: center"><b>GRACIAS POR SU PREFERENCIA</b></p>
+<br><br>
+-------------------------------------------------------------------------------- <br>
+         <b>USUARIO:</b> '.$nombres_sesion.'
 ';
 
 // output the HTML content
@@ -197,21 +174,10 @@ $pdf->writeHTML($html, true, false, true, false, '');
 
 
 
-$style = array(
-    'border' => 0,
-    'vpadding' => '3',
-    'hpadding' => '3',
-    'fgcolor' => array(0, 0, 0),
-    'bgcolor' => false, //array(255,255,255)
-    'module_width' => 1, // width of a single module in points
-    'module_height' => 1 // height of a single module in points
-);
-
-$QR = 'Factura realizada por el sistema de ventas HILARI WEB, al cliente '.$nombre_cliente.' con nit/ci: '.$area_cliente.' en fecha '.$fecha_actual.' con el monto total de '.$precio_total.'';
-$pdf->write2DBarcode($QR,'QRCODE,L',  170,240,40,40, $style);
 
 
-ob_end_clean();
+
+
 
 //Close and output PDF document
 $pdf->Output('example_002.pdf', 'I');

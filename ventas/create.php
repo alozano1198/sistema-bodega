@@ -39,7 +39,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                   $contador_de_ventas = $contador_de_ventas + 1;
                                 }
                                 ?>
-                                   <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Venta No. 
+                                   <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Salida No. 
                                    <input type="text" style="text-align: center;" name="" id="" value="<?php echo $contador_de_ventas + 1;?>" disabled></h3>
                                    <div class="card-tools">
                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -272,7 +272,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                        <div class="col-md-9">
                            <div class="card card-outline card-primary">
                                <div class="card-header">
-                                   <h3 class="card-title"><i class="fa fa-user-check"></i> Datos del cliente</h3>
+                                   <h3 class="card-title"><i class="fa fa-user-check"></i> Datos del empleado</h3>
                                    <div class="card-tools">
                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                            <i class="fas fa-minus"></i>
@@ -282,7 +282,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                </div>
 
                                <div class="card-body">
-                                   <b>Cliente</b>
+                                   <b>Empleado</b>
 
                                    <button type="button" class="btn btn-primary" data-toggle="modal"
                                                data-target="#modal-buscar_cliente">
@@ -294,12 +294,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                            <div class="modal-dialog modal-lg">
                                                <div class="modal-content">
                                                    <div class="modal-header" style="background-color: #1d36b6;color: white">
-                                                       <h4 class="modal-title">Busqueda del cliente </h4>
+                                                       <h4 class="modal-title">Busqueda del empleado </h4>
                                                        <div style="width: 10px;"></div>
                                                        <button type="button" class="btn btn-warning" data-toggle="modal"
                                                        data-target="#modal-agregar_cliente">
                                                        <i class="fa fa-users"></i>
-                                                        Agregar nuevo cliente
+                                                        Agregar Nuevo Empleado
                                                         </button>
                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                            <span aria-hidden="true">&times;</span>
@@ -312,7 +312,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                                <tr>
                                                                    <th><center>No.</center></th>
                                                                    <th><center>Selecionar</center></th>
-                                                                   <th><center>Nombre del cliente</center></th>
+                                                                   <th><center>Nombre del empleado</center></th>
                                                                    <th><center>Área</center></th>
                                                                </tr>
                                                                </thead>
@@ -371,7 +371,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                         <div class="col-md-3">
                                           <div class="form-group">
                                             <input type="text" id="id_cliente" hidden>
-                                            <label for="">Nombre del cliente</label>
+                                            <label for="">Nombre del empleado</label>
                                             <input type="text" name="" id="nombre_cliente" class="form-control">
                                           </div>
                                         </div>
@@ -391,7 +391,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                        <div class="col-md-3">
                            <div class="card card-outline card-primary">
                                <div class="card-header">
-                                   <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Registrar Venta</h3>
+                                   <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Cantidad de Productos</h3>
                                    <div class="card-tools">
                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                            <i class="fas fa-minus"></i>
@@ -402,13 +402,13 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
 
                                <div class="card-body">
                                    <div class="form-group">
-                                    <label for="">Monto a cancelar</label>
+                                    <label for="">Cantidad Total</label>
                                     <input type="text" name="" id="total_a_cancelar" class="form-control" style="text-align: center; background-color: #fff819;" value="<?php echo $cantidad_total;?>" disabled>
                                    </div>
                                    
                                    <hr>
                                    <div class="form-group">
-                                      <button id="btn_guardar_venta" class="btn btn-primary btn-block">Guardar venta</button>
+                                      <button id="btn_guardar_venta" class="btn btn-primary btn-block">Guardar</button>
                                       <div id="respuesta_registro_venta"></div>
                                       <script>
                                         $('#btn_guardar_venta').click(function () {
@@ -516,12 +516,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
             "pageLength": 5,
             "language": {
                 "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Clientes",
-                "infoEmpty": "Mostrando 0 a 0 de 0 Clientes",
-                "infoFiltered": "(Filtrado de _MAX_ total Clientes)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Empleados",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Empleados",
+                "infoFiltered": "(Filtrado de _MAX_ total Empleados)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Clientes",
+                "lengthMenu": "Mostrar _MENU_ Empleados",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",
@@ -539,12 +539,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
     });
 </script>
 
-<!-- modal para visualizar el formulario para agregar clientes -->
+<!-- modal para visualizar el formulario para agregar empleado -->
                                        <div class="modal fade" id="modal-agregar_cliente">
                                            <div class="modal-dialog modal-sm">
                                                <div class="modal-content">
                                                    <div class="modal-header" style="background-color: #b6900c;color: white">
-                                                       <h4 class="modal-title">Nuevo cliente </h4>
+                                                       <h4 class="modal-title">Nuevo empleado </h4>
                                                        <div style="width: 10px;"></div>
                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                            <span aria-hidden="true">&times;</span>
@@ -553,7 +553,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                    <div class="modal-body">
                                                        <form action="../app/controllers/clientes/guardar_clientes.php" method="post">
                                                         <div class="form-group">
-                                                          <label for="">Nombre del cliente</label>
+                                                          <label for="">Nombre del empleado</label>
                                                           <input type="text" name="nombre_cliente" id="" class="form-control">
                                                         </div>
                                                         <div class="form-group">
@@ -563,7 +563,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                         
                                                         <hr>
                                                         <div class="form-group">
-                                                          <button type="submit" class="btn btn-warning btn-block">Guardar cliente</button>
+                                                          <button type="submit" class="btn btn-warning btn-block">Guardar</button>
                                                         </div>
                                                        </form>
                                                    </div>

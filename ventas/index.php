@@ -47,7 +47,7 @@ include ('../app/controllers/ventas/listado_de_ventas.php');
                                     <thead>
                                     <tr class="text-center">
                                         <th>No.</th>
-                                        <th>No. de Salida</th>
+                                        <th>Salida No.</th>
                                         <th>Productos</th>
                                         <th>Empleado</th>
                                         <th>Cantidad Productos</th>

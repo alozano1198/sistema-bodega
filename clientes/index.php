@@ -17,7 +17,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Listado de Clientes</h1>
+                    <h1 class="m-0">Listado de Empleados de Áreas</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -33,7 +33,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                 <div class="col-md-12">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">CLIENTES REGISTRADOS</h3>
+                            <h3 class="card-title">EMPLEADOS REGISTRADOS</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                                 </button>
@@ -45,9 +45,9 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr class="text-center">
-                                    <th>Nro</th>
-                                    <th>Nombre del cliente</th>
-                                    <th>Área cliente</th>
+                                    <th>No.</th>
+                                    <th>Nombre del Empleado</th>
+                                    <th>Área Empleado</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -66,9 +66,9 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                 </tbody>
                                 <tfoot>
                                 <tr class="text-center">
-                                    <th>Nro</th>
-                                    <th>Nombre del cliente</th>
-                                    <th>Área cliente</th>
+                                    <th>No.</th>
+                                    <th>Nombre del Empleado</th>
+                                    <th>Área Empleado</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -96,12 +96,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
             "pageLength": 5,
             "language": {
                 "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Usuarios",
-                "infoEmpty": "Mostrando 0 a 0 de 0 Usuarios",
-                "infoFiltered": "(Filtrado de _MAX_ total Usuarios)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Empleados",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Empleados",
+                "infoFiltered": "(Filtrado de _MAX_ total Empleados)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Usuarios",
+                "lengthMenu": "Mostrar _MENU_ Empleados",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",
