@@ -271,6 +271,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <li class="nav-item menu-is-opening menu-open">
                         <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-arrow-left"></i>
+                            <p>
+                                DEVOLUCIONES
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo $URL;?>/devoluciones" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de Devoluciones</p>
+                                </a>
+                            </li>
+                            <li class="nav-item menu-is-opening menu-open">
+                                <a href="<?php echo $URL;?>/devoluciones/create.php" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Realizar Devolución</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="nav-item menu-is-opening menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>
                                 EMPLEADOS ÁREAS

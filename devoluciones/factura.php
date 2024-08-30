@@ -2,7 +2,6 @@
 
 require_once('../app/TCPDF-main/tcpdf.php');
 include('../app/config.php');
-include('../app/controllers/ventas/literal.php');
 
 
 session_start();
@@ -25,22 +24,22 @@ if(isset($_SESSION['sesion_email'])){
 }
 
 
-$id_venta_get = $_GET['id_venta'];
-$nro_venta_get = $_GET['nro_venta'];
+$id_devolucion_get = $_GET['id_devolucion'];
+$nro_devolucion_get = $_GET['nro_devolucion'];
 
 
-$sql_ventas = "SELECT *, cli.nombre_cliente AS nombre_cliente, cli.area_cliente AS area_cliente
-FROM tb_ventas AS ve 
-INNER JOIN tb_clientes AS cli ON cli.id_cliente = ve.id_cliente WHERE ve.id_venta = '$id_venta_get'";
-$query_ventas = $pdo->prepare($sql_ventas);
-$query_ventas->execute();
-$ventas_datos = $query_ventas->fetchAll(PDO::FETCH_ASSOC);
+$sql_devoluciones = "SELECT *, cli.nombre_cliente AS nombre_cliente, cli.area_cliente AS area_cliente
+FROM tb_devoluciones AS dev 
+INNER JOIN tb_clientes AS cli ON cli.id_cliente = dev.id_cliente WHERE dev.id_devolucion = '$id_devolucion_get'";
+$query_devoluciones = $pdo->prepare($sql_devoluciones);
+$query_devoluciones->execute();
+$devoluciones_datos = $query_devoluciones->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($ventas_datos as $ventas_dato) {
-  $area_cliente = $ventas_dato['area_cliente'];
-  $nombre_cliente = $ventas_dato['nombre_cliente'];
-  $total_pagado = $ventas_dato['total_pagado'];
-  $fecha_creacion = $ventas_dato['fyh_creacion'];
+foreach ($devoluciones_datos as $devoluciones_dato) {
+  $area_cliente = $devoluciones_dato['area_cliente'];
+  $nombre_cliente = $devoluciones_dato['nombre_cliente'];
+  $total_pagado = $devoluciones_dato['total_pagado'];
+  $fecha_creacion = $devoluciones_dato['fyh_creacion'];
 }
 
 
@@ -57,7 +56,7 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(79,90), true, 'UTF-8', fa
 // set document information
 $pdf->setCreator(PDF_CREATOR);
 $pdf->setAuthor('Nicola Asuni');
-$pdf->setTitle('Comprobante Salida');
+$pdf->setTitle('Comprobante Devolución');
 $pdf->setSubject('TCPDF Tutorial');
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
@@ -101,9 +100,9 @@ $html = '
     <p style="text-align: center">
         <b>BODEGA DE INSUMOS</b> <br>
          <br>
-        <b>Salida No.</b> '.$id_venta_get.' <br>
+        <b>Devolución No.</b> '.$id_devolucion_get.' <br>
         <br>
-        <b>Comprobante de Salida de Productos</b>
+        <b>Comprobante de Devolución</b>
          <br>
         --------------------------------------------------------------------------------
         <div style="text-align: left">
@@ -125,29 +124,29 @@ $html .='
 </tr>
 ';
 
-$contador_de_carrito = 0;
+$contador_de_carrito_devolucion = 0;
 $cantidad_total = 0;
 
-$sql_carrito = "SELECT *, pro.nombre AS nombre_producto, pro.descripcion AS descripcion,
+$sql_carrito_devolucion = "SELECT *, pro.nombre AS nombre_producto, pro.descripcion AS descripcion,
 pro.stock AS stock, pro.id_producto AS id_producto  
-FROM tb_carrito AS carr INNER JOIN tb_almacen AS pro 
+FROM tb_carrito_devolucion AS carr INNER JOIN tb_almacen AS pro 
 ON carr.id_producto = pro.id_producto
-WHERE nro_venta = '$nro_venta_get' ORDER BY id_carrito ASC;";
+WHERE nro_devolucion = '$nro_devolucion_get' ORDER BY id_carrito_devolucion ASC;";
 
-$query_carrito = $pdo->prepare($sql_carrito);
-$query_carrito->execute();
-$carrito_datos = $query_carrito->fetchAll(PDO::FETCH_ASSOC);
+$query_carrito_devolucion = $pdo->prepare($sql_carrito_devolucion);
+$query_carrito_devolucion->execute();
+$carrito_devolucion_datos = $query_carrito_devolucion->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($carrito_datos as $carrito_dato) {
-$id_carrito = $carrito_dato['id_carrito'];
-$contador_de_carrito = $contador_de_carrito + 1;
-$cantidad_total = $cantidad_total + $carrito_dato['cantidad'];
+foreach ($carrito_devolucion_datos as $carrito_devolucion_dato) {
+$id_carrito_devolucion = $carrito_devolucion_dato['id_carrito_devolucion'];
+$contador_de_carrito_devolucion = $contador_de_carrito_devolucion + 1;
+$cantidad_total = $cantidad_total + $carrito_devolucion_dato['cantidad'];
 
  $html .='
    <tr>
-      <td style="text-align: center">'.$contador_de_carrito.'</td>
-      <td>'.$carrito_dato['nombre_producto'].'</td>
-      <td style="text-align: center">'.$carrito_dato['cantidad'].'</td>
+      <td style="text-align: center">'.$contador_de_carrito_devolucion.'</td>
+      <td>'.$carrito_devolucion_dato['nombre_producto'].'</td>
+      <td style="text-align: center">'.$carrito_devolucion_dato['cantidad'].'</td>
   </tr>
 ';
 }

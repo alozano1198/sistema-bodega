@@ -4,7 +4,7 @@ include ('../layout/sesion.php');
 
 include ('../layout/parte1.php');
 
-include ('../app/controllers/ventas/listado_de_ventas.php');
+include ('../app/controllers/devoluciones/listado_de_devoluciones.php');
 include ('../app/controllers/almacen/listado_de_productos.php');
 include ('../app/controllers/clientes/listado_de_clientes.php');
 
@@ -17,7 +17,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Registro de Nueva Salida</h1>
+                    <h1 class="m-0">Registro de Nueva Devolución</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -34,13 +34,13 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                            <div class="card card-outline card-primary">
                                <div class="card-header">
                                 <?php 
-                                $contador_de_ventas = 0;
-                                foreach ($ventas_datos as $ventas_dato) {
-                                  $contador_de_ventas = $contador_de_ventas + 1;
+                                $contador_de_devoluciones = 0;
+                                foreach ($devoluciones_datos as $devoluciones_dato) {
+                                  $contador_de_devoluciones = $contador_de_devoluciones + 1;
                                 }
                                 ?>
-                                   <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Salida No. 
-                                   <input type="text" style="text-align: center;" name="" id="" value="<?php echo $contador_de_ventas + 1;?>" disabled></h3>
+                                   <h3 class="card-title"><i class="fa fa-shopping-bag"></i> Devolución No. 
+                                   <input type="text" style="text-align: center;" name="" id="" value="<?php echo $contador_de_devoluciones + 1;?>" disabled></h3>
                                    <div class="card-tools">
                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                            <i class="fas fa-minus"></i>
@@ -160,13 +160,13 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                               </div>
                                                             </div>
                                                            </div>
-                                                           <button style="float: right;" id="btn_registrar_carrito" class="btn btn-primary">Registrar</button>
-                                                           <div id="respuesta_carrito"></div>
+                                                           <button style="float: right;" id="btn_registrar_carrito_devolucion" class="btn btn-primary">Registrar</button>
+                                                           <div id="respuesta_carrito_devolucion"></div>
                                                            <script>
-                                                            $('#btn_registrar_carrito').click(function () {
+                                                            $('#btn_registrar_carrito_devolucion').click(function () {
                                                               //alert("Click");
 
-                                                              var nro_venta = '<?php echo $contador_de_ventas+1; ?>';
+                                                              var nro_devolucion = '<?php echo $contador_de_devoluciones+1; ?>';
                                                               var id_producto = $('#id_producto').val();
                                                               var cantidad = $('#cantidad').val();
 
@@ -176,9 +176,9 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                                                 alert("Debe de llenar la cantidad del producto...");
                                                               }else{
                                                                 //alert("Listo");
-                                                                var url = "../app/controllers/ventas/registrar_carrito.php";
-                                                                $.get(url,{nro_venta:nro_venta, id_producto:id_producto, cantidad:cantidad},function (datos) {
-                                                                    $('#respuesta_carrito').html(datos);
+                                                                var url = "../app/controllers/devoluciones/registrar_carrito_devolucion.php";
+                                                                $.get(url,{nro_devolucion:nro_devolucion, id_producto:id_producto, cantidad:cantidad},function (datos) {
+                                                                    $('#respuesta_carrito_devolucion').html(datos);
                                                                 });
                                                               }
                                                               
@@ -207,39 +207,39 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                           </thead>
                                           <tbody>
                                             <?php 
-                                            $contador_de_carrito = 0;
+                                            $contador_de_carrito_devolucion = 0;
                                             $cantidad_total = 0;
 
-                                            $nro_venta = $contador_de_ventas + 1;
-                                            $sql_carrito = "SELECT *, pro.nombre AS nombre_producto, pro.descripcion AS descripcion,
+                                            $nro_devolucion = $contador_de_devoluciones + 1;
+                                            $sql_carrito_devolucion = "SELECT *, pro.nombre AS nombre_producto, pro.descripcion AS descripcion,
                                             pro.stock AS stock, pro.id_producto AS id_producto  
-                                            FROM tb_carrito AS carr INNER JOIN tb_almacen AS pro 
+                                            FROM tb_carrito_devolucion AS carr INNER JOIN tb_almacen AS pro 
                                             ON carr.id_producto = pro.id_producto
-                                            WHERE nro_venta = '$nro_venta' ORDER BY id_carrito ASC;";
-                                            $query_carrito = $pdo->prepare($sql_carrito);
-                                            $query_carrito->execute();
-                                            $carrito_datos = $query_carrito->fetchAll(PDO::FETCH_ASSOC);
+                                            WHERE nro_devolucion = '$nro_devolucion' ORDER BY id_carrito_devolucion ASC;";
+                                            $query_carrito_devolucion = $pdo->prepare($sql_carrito_devolucion);
+                                            $query_carrito_devolucion->execute();
+                                            $carrito_devolucion_datos = $query_carrito_devolucion->fetchAll(PDO::FETCH_ASSOC);
 
-                                            foreach ($carrito_datos as $carrito_dato) {
-                                              $id_carrito = $carrito_dato['id_carrito'];
-                                              $contador_de_carrito = $contador_de_carrito + 1;
-                                              $cantidad_total = $cantidad_total + $carrito_dato['cantidad'];
+                                            foreach ($carrito_devolucion_datos as $carrito_devolucion_dato) {
+                                              $id_carrito_devolucion = $carrito_devolucion_dato['id_carrito_devolucion'];
+                                              $contador_de_carrito_devolucion = $contador_de_carrito_devolucion + 1;
+                                              $cantidad_total = $cantidad_total + $carrito_devolucion_dato['cantidad'];
                                              ?>
                                               <tr>
                                                 <td>
-                                                  <center><?php echo $contador_de_carrito;?></center>
-                                                  <input type="text" name="" id="id_producto<?php echo $contador_de_carrito;?>" value="<?php echo $carrito_dato['id_producto']; ?>" hidden>
+                                                  <center><?php echo $contador_de_carrito_devolucion;?></center>
+                                                  <input type="text" name="" id="id_producto<?php echo $contador_de_carrito_devolucion;?>" value="<?php echo $carrito_devolucion_dato['id_producto']; ?>" hidden>
                                                 </td>
-                                                <td><?php echo $carrito_dato['nombre_producto']; ?></td>
-                                                <td><?php echo $carrito_dato['descripcion']; ?></td>
+                                                <td><?php echo $carrito_devolucion_dato['nombre_producto']; ?></td>
+                                                <td><?php echo $carrito_devolucion_dato['descripcion']; ?></td>
                                                 <td>
-                                                  <center><span id="cantidad_carrito<?php echo $contador_de_carrito;?>"><?php echo $carrito_dato['cantidad'];?></span></center>
-                                                  <input type="text" value="<?php echo $carrito_dato['stock']; ?>" id="stock_de_inventario<?php echo $contador_de_carrito;?>" hidden>
+                                                  <center><span id="cantidad_carrito_devolucion<?php echo $contador_de_carrito_devolucion;?>"><?php echo $carrito_devolucion_dato['cantidad'];?></span></center>
+                                                  <input type="text" value="<?php echo $carrito_devolucion_dato['stock']; ?>" id="stock_de_inventario<?php echo $contador_de_carrito_devolucion;?>" hidden>
                                                 </td>
                                                 <td>
                                                   <center>
-                                                    <form action="../app/controllers/ventas/borrar_carrito.php" method="post">
-                                                      <input type="text" name="id_carrito" value="<?php echo $id_carrito;?>" hidden>
+                                                    <form action="../app/controllers/devoluciones/borrar_carrito_devolucion.php" method="post">
+                                                      <input type="text" name="id_carrito_devolucion" value="<?php echo $id_carrito_devolucion;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Borrar</button>
                                                   </form>
                                                   </center>
@@ -391,7 +391,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                        <div class="col-md-3">
                            <div class="card card-outline card-primary">
                                <div class="card-header">
-                                   <h3 class="card-title"><i class="fa fa-shopping-basket"></i> Cantidad de Productos</h3>
+                                   <h3 class="card-title"><i class="fa fa-arrow-left"></i> Cantidad de Productos</h3>
                                    <div class="card-tools">
                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                            <i class="fas fa-minus"></i>
@@ -408,12 +408,12 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                    
                                    <hr>
                                    <div class="form-group">
-                                      <button id="btn_guardar_venta" class="btn btn-primary btn-block">Guardar</button>
-                                      <div id="respuesta_registro_venta"></div>
+                                      <button id="btn_guardar_devolucion" class="btn btn-primary btn-block">Guardar</button>
+                                      <div id="respuesta_registro_devolucion"></div>
                                       <script>
-                                        $('#btn_guardar_venta').click(function () {
+                                        $('#btn_guardar_devolucion').click(function () {
                                           //alert("click");
-                                          var nro_venta = '<?php echo $contador_de_ventas + 1;?>';
+                                          var nro_devolucion = '<?php echo $contador_de_devoluciones + 1;?>';
                                           var id_cliente = $('#id_cliente').val();
                                           var total_a_cancelar = $('#total_a_cancelar').val();
 
@@ -422,39 +422,39 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                           }else{
                                              
                                               actualizar_stock();
-                                             guardar_venta();
+                                             guardar_devolucion();
                                           }
 
                                           
                                           function actualizar_stock() {
                                             var i = 1;
-                                          var n = '<?php echo $contador_de_carrito;?>';
+                                          var n = '<?php echo $contador_de_carrito_devolucion;?>';
                                           //alert(n);
 
                                             for( i = 1; i <= n; i++){
                                               var a = '#stock_de_inventario'+i;
                                               var stock_de_inventario = $(a).val();
 
-                                              var b = '#cantidad_carrito'+i;
-                                              var cantidad_carrito = $(b).html();
+                                              var b = '#cantidad_carrito_devolucion'+i;
+                                              var cantidad_carrito_devolucion = $(b).html();
 
                                               var c = '#id_producto'+i;
                                               var id_producto = $(c).val();
 
-                                              var stock_calculado = parseFloat(parseInt(stock_de_inventario) - parseInt(cantidad_carrito));
-                                              //alert(id_producto + " - " + stock_de_inventario + " - " + cantidad_carrito + " - "+ stock_calculado);
+                                              var stock_calculado = parseFloat(parseInt(stock_de_inventario) + parseInt(cantidad_carrito_devolucion));
+                                              //alert(id_producto + " - " + stock_de_inventario + " - " + cantidad_carrito_devolucion + " - "+ stock_calculado);
 
-                                              var url2 = "../app/controllers/ventas/actualizar_stock.php";
+                                              var url2 = "../app/controllers/devoluciones/actualizar_stock.php";
                                              $.get(url2,{id_producto:id_producto,stock_calculado:stock_calculado},function (datos) {
                                              
                                              });
                                             }
                                           }
 
-                                          function guardar_venta() {
-                                            var url = "../app/controllers/ventas/registro_de_ventas.php";
-                                             $.get(url,{nro_venta:nro_venta,id_cliente:id_cliente,total_a_cancelar:total_a_cancelar},function (datos) {
-                                             $('#respuesta_registro_venta').html(datos);
+                                          function guardar_devolucion() {
+                                            var url = "../app/controllers/devoluciones/registro_de_devoluciones.php";
+                                             $.get(url,{nro_devolucion:nro_devolucion,id_cliente:id_cliente,total_a_cancelar:total_a_cancelar},function (datos) {
+                                             $('#respuesta_registro_devolucion').html(datos);
                                              });
                                           }
 
