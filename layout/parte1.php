@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de ventas</title>
+    <title>Sistema de Bodega ITM</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -196,6 +196,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <li class="nav-item menu-is-opening menu-open">
                         <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-car"></i>
+                            <p>
+                                PROVEEDORES
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo $URL;?>/proveedores" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de Proveedores</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="nav-item menu-is-opening menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-cart-plus"></i>
                             <p>
                                 ENTRADAS
@@ -221,28 +242,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
+
                     <li class="nav-item menu-is-opening menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-car"></i>
-                            <p>
-                                PROVEEDORES
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo $URL;?>/proveedores" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de Proveedores</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-
-
-                     <li class="nav-item menu-is-opening menu-open">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-shopping-basket"></i>
                             <p>
@@ -269,7 +270,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-                    <li class="nav-item menu-is-opening menu-open">
+                      <li class="nav-item menu-is-opening menu-open">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-arrow-left"></i>
                             <p>
