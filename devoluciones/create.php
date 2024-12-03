@@ -418,7 +418,7 @@ include ('../app/controllers/clientes/listado_de_clientes.php');
                                           var total_a_cancelar = $('#total_a_cancelar').val();
 
                                           if (id_cliente == "") {
-                                            alert("Debe de llenar los datos del cliente")
+                                            alert("Debe de llenar los datos del empleado")
                                           }else{
                                              
                                               actualizar_stock();

@@ -2,8 +2,6 @@
 
 require_once('../app/TCPDF-main/tcpdf.php');
 include('../app/config.php');
-include('../app/controllers/ventas/literal.php');
-
 
 session_start();
 if(isset($_SESSION['sesion_email'])){

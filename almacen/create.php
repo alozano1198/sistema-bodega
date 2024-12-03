@@ -32,7 +32,7 @@ include ('../app/controllers/categorias/listado_de_categoria.php');
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">REGISTRO DE NUEVO USUARIO</h3>
+                            <h3 class="card-title">REGISTRO DE NUEVO PRODUCTO</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                                 </button>
